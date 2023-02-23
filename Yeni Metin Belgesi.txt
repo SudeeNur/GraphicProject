@@ -1,0 +1,81 @@
+
+
+                                                                  UseState
+import { useState } from 'react';
+import './App.css';
+function App() {
+  let number=10
+  let [data,setData] =useState(100) //varsayılan değer 100
+  const setNumber=() => {
+    number=1
+    setData(data+1)
+  }
+  const degerleriGoster =()=>{
+    console.log("Number:",number);
+    console.log("Data",data);
+  }
+  return (
+    <div className="App">
+      Data: {data}
+      <br/>
+      Number: {number}
+      <br/>
+      <button onClick={()=> setNumber()} > Güncelle </button>
+      <br/>
+      <button onClick={()=> degerleriGoster()}> Değerleri Göster</button>
+      <br/>
+      <button onClick={()=> setData(5)}>Data</button>
+    </div>
+  );
+}
+
+export default App;
+
+
+                                                               USEEFFECT
+import { useState, useEffect } from 'react';
+import './App.css';
+
+function App() {
+
+  const [data,setData]=useState(1)
+  const [value,setValue]=useState("")
+
+  useEffect(()=>{
+    console.log('(sürekli)İlk devreye girme'); // ilk başlangıçta devreye girer 
+  })
+  useEffect(()=>{console.log('(Data )Devreye Girme')},[data]); 
+  //her değişim olduca devreye girer eğer data yazarsak da data değiştiğinde devreye girer.
+  // eper data yerine value yazarsak buttona basıldığında devreye girer sadece 
+  useEffect(()=>{console.log('(Value)Devreye Girme')},[value]); 
+  useEffect(()=>{console.log('(Data ve Value)Devreye Girme')},[value,data]); 
+
+
+  return (
+    <div className="App">
+      use Effect
+      <input value={data} onChange={(e) =>{setData(e.target.value)}}/>
+      <br/>
+      <button onClick={()=>setValue(value+2)}> Value Değiştir</button>
+      <br/>
+      Value: {value}
+      <br/>
+      Data:{data}
+
+    </div>
+  );
+}
+
+export default App;
+
+
+
+
+
+
+
+
+
+
+
+
